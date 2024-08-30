@@ -263,7 +263,7 @@ function archiveEmail(emailId) {
     .catch(error => {
         console.error('Error archiving email:', error);
     });
-    mail_inbox_view();
+    window.location.reload(); // This will reload the current page
 }
 
 // Utility: mark email as unarchived
@@ -283,5 +283,5 @@ function unarchiveEmail(emailId) {
     .catch(error => {
         console.error('Error archiving email:', error);
     });
-    archive_inbox_view()
+    window.location.reload(); // This will reload the current page
 }
