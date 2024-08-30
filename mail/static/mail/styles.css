@@ -1,3 +1,25 @@
 textarea {
     min-height: 400px;
 }
+#compose-view {
+    background-color: #f92f2f;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
+}
+.title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+body {
+    background-color: #323232; /* Light grey background color */
+    background-image: url('path/to/your/background-image.jpg'); /* Optional: Add a background image */
+    background-size: cover; /* Ensure the background image covers the entire page */
+    background-repeat: no-repeat; /* Prevent the background image from repeating */
+    background-attachment: fixed; /* Make the background image fixed when scrolling */
+}
