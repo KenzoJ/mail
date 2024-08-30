@@ -24,9 +24,7 @@ function compose_email() {
     document.querySelector('#compose-recipients').value = '';
     document.querySelector('#compose-subject').value = '';
     document.querySelector('#compose-body').value = '';
-  
-    
-  }
+}
 
 // Show the archived mailbox and hide other views
 function archive_inbox_view() {
@@ -88,6 +86,7 @@ function archive_inbox_view() {
     });
 
 }
+
 // making sure page is loaded before sending form
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('#compose-form').addEventListener('submit', (event) => {
