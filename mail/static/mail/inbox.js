@@ -205,33 +205,38 @@ function mail_inbox_view() {
                 emailDiv.className = 'email';
 
                 const sender = document.createElement('p');
-                sender.textContent = `From: ${email.sender}`;
+                sender.textContent = email.sender;
+                sender.classList.add('sender')
 
-                const subject = document.createElement('h4');
+                const subject = document.createElement('p');
                 subject.textContent = email.subject;
 
                 const body = document.createElement('p');
                 body.textContent = email.body;
 
                 const timestamp = document.createElement('p');
-                timestamp.textContent = `Received at: ${email.timestamp}`;
+                timestamp.textContent = email.timestamp;
+                timestamp.classList.add('timestamp')
 
-                const archiveButton = document.createElement('button');
+            /*  button for use in the new tab
+               const archiveButton = document.createElement('button');
                 archiveButton.textContent = 'Archive';
                 archiveButton.addEventListener('click', () => archiveEmail(email.id));
-
+                emailDiv.appendChild(archiveButton);
+ */
                 
                 // from person, subject, timestamp
                 emailDiv.appendChild(sender);
                 emailDiv.appendChild(subject);
                 emailDiv.appendChild(timestamp);
                 // archive button
-                emailDiv.appendChild(archiveButton);
+                emailDiv.className = 'email-items';
+                
                 emailContainer.appendChild(emailDiv);
             });
 
             // Add a class to the email container
-            emailContainer.className = 'email-container';
+            
 
             // Append the email container to the emails-view div
             document.querySelector('#emails-view').appendChild(emailContainer);

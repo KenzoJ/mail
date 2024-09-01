@@ -2,8 +2,8 @@ textarea {
     min-height: 400px;
 }
 #compose-view {
-    background-color: #f92f2f;
-    border: 1px solid #ddd;
+    background-color: #e6e6e6;
+    border: 1px solid #000000;
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 10px;
@@ -16,26 +16,43 @@ textarea {
     margin-bottom: 10px;
 }
 
-body {
-    background-color: #323232; /* Light grey background color */
-    background-image: url('path/to/your/background-image.jpg'); /* Optional: Add a background image */
-    background-size: cover; /* Ensure the background image covers the entire page */
-    background-repeat: no-repeat; /* Prevent the background image from repeating */
-    background-attachment: fixed; /* Make the background image fixed when scrolling */
-}
-
-.email-container {
-    border: 1px solid black;
-    padding: 10px;
-    margin: 10px 0;
-    background-color: #f9f9f9;
-}
 
 .email {
     border-bottom: 1px solid #ddd;
+    display: flex;
     padding: 10px 0;
 }
 
 .email:last-child {
     border-bottom: none;
+}
+.email-container {
+    border: 2px solid #000; /* Add a solid black border with 2px width */
+    padding: 5px; /* Add inside padding */
+    gap: 10px; /* Optional: Add space between flex items */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+.email-items {
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    justify-content: flex-start;
+    border-bottom: 2px solid rgb(217, 217, 217);
+}
+
+.email-items:hover {
+    background-color: #f0f0f0; /* Change background color on hover */
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+.timestamp {
+    align-self: flex-end;
+    margin-left: auto;
+    color: grey;
+}
+
+.sender {
+    font-weight: bold;
 }
