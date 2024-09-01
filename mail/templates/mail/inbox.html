@@ -1,5 +1,5 @@
 {% extends "mail/layout.html" %}
-{% load static %}
+{% load staticfiles_version %}
 
 {% block body %}
     <div class="title">
@@ -42,5 +42,5 @@
 {% endblock %}
 
 {% block script %}
-    <script src="{% static 'mail/inbox.js' %}"></script>
+    <script src="{% staticfiles_version 'mail/inbox.js' %}"></script>
 {% endblock %}

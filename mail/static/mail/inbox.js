@@ -181,12 +181,12 @@ function sent_email_view() {
 
 // VIEW: All mail sent to person (not archived)
 function mail_inbox_view() {
-    console.log('viewing inbox...');
+    console.log('viewing inbox...!');
     document.querySelector('#emails-view').style.display = 'block';
     document.querySelector('#compose-view').style.display = 'none';
     document.querySelector('#sent-email-view').style.display = 'none';
 
-    document.querySelector('#emails-view').innerHTML = `<h3>Inbox</h3>`;
+    document.querySelector('#emails-view').innerHTML = `<h3>Inbox!</h3>`;
 
     fetch('/emails/inbox')
     .then(response => response.json())
@@ -220,10 +220,12 @@ function mail_inbox_view() {
                 archiveButton.textContent = 'Archive';
                 archiveButton.addEventListener('click', () => archiveEmail(email.id));
 
-                emailDiv.appendChild(timestamp);
+                
+                // from person, subject, timestamp
                 emailDiv.appendChild(sender);
                 emailDiv.appendChild(subject);
-                emailDiv.appendChild(body);
+                emailDiv.appendChild(timestamp);
+                // archive button
                 emailDiv.appendChild(archiveButton);
                 emailContainer.appendChild(emailDiv);
             });

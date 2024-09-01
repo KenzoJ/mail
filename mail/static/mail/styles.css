@@ -23,3 +23,19 @@ body {
     background-repeat: no-repeat; /* Prevent the background image from repeating */
     background-attachment: fixed; /* Make the background image fixed when scrolling */
 }
+
+.email-container {
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #f9f9f9;
+}
+
+.email {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.email:last-child {
+    border-bottom: none;
+}
