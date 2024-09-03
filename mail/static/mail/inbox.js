@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Use buttons to toggle between views
     document.querySelector('#inbox').addEventListener('click', () => mail_inbox_view());
     document.querySelector('#sent').addEventListener('click', () => sent_email_view());
-    document.querySelector('#archived').addEventListener('click', archive_inbox_view);
-    document.querySelector('#compose').addEventListener('click', compose_email);
+    document.querySelector('#archived').addEventListener('click', () => archive_inbox_view());
+    document.querySelector('#compose').addEventListener('click', () => compose_email());
   
     // By default, load the inbox
     mail_inbox_view();
@@ -19,7 +19,8 @@ function compose_email() {
     document.querySelector('#emails-view').style.display = 'none';
     document.querySelector('#compose-view').style.display = 'block';
     document.querySelector('#sent-email-view').style.display = 'none';
-  
+    document.querySelector('#view-single-email').style.display = 'none';
+
     // Clear out composition fields
     document.querySelector('#compose-recipients').value = '';
     document.querySelector('#compose-subject').value = '';
@@ -31,7 +32,10 @@ function archive_inbox_view() {
     document.querySelector('#emails-view').style.display = 'none';
     document.querySelector('#compose-view').style.display = 'none';
     document.querySelector('#sent-email-view').style.display = 'block';
+    document.querySelector('#view-single-email').style.display = 'none';
+
     document.querySelector('#sent-email-view').innerHTML = `<h3>Archived!</h3>`;
+
 
     fetch('/emails/archive')
     .then(response => response.json())
@@ -127,6 +131,7 @@ function sent_email_view() {
     document.querySelector('#emails-view').style.display = 'none';
     document.querySelector('#compose-view').style.display = 'none';
     document.querySelector('#sent-email-view').style.display = 'block';
+    document.querySelector('#view-single-email').style.display = 'none';
 
     document.querySelector('#sent-email-view').innerHTML = `<h3>Sent mailbox</h3>`;
 
@@ -143,6 +148,8 @@ function sent_email_view() {
             emails.forEach(email => {
                 const emailDiv = document.createElement('div');
                 emailDiv.className = 'email';
+
+                
 
                 const recipients = document.createElement('p');
                 recipients.textContent = `To: ${email.recipients}`;
@@ -185,6 +192,7 @@ function mail_inbox_view() {
     document.querySelector('#emails-view').style.display = 'block';
     document.querySelector('#compose-view').style.display = 'none';
     document.querySelector('#sent-email-view').style.display = 'none';
+    document.querySelector('#view-single-email').style.display = 'none';
 
     document.querySelector('#emails-view').innerHTML = `<h3>Inbox!</h3>`;
 
@@ -218,6 +226,10 @@ function mail_inbox_view() {
                 timestamp.textContent = email.timestamp;
                 timestamp.classList.add('timestamp')
 
+                emailDiv.addEventListener('click', () => {
+                    view_single_email(email.id);
+                });
+
             /*  button for use in the new tab
                const archiveButton = document.createElement('button');
                 archiveButton.textContent = 'Archive';
@@ -249,6 +261,7 @@ function mail_inbox_view() {
         console.error('Error fetching emails:', error);
         document.querySelector('#emails-view').innerHTML += '<p>Error fetching emails.</p>';
     });
+
 }
 
 // Utility: mark email as archived
@@ -290,4 +303,39 @@ function unarchiveEmail(emailId) {
         console.error('Error archiving email:', error);
     });
     window.location.reload(); // This will reload the current page
+}
+
+function view_single_email(emailId) {
+    document.querySelector('#emails-view').style.display = 'none';
+    document.querySelector('#compose-view').style.display = 'none';
+    document.querySelector('#sent-email-view').style.display = 'none';
+    document.querySelector('#view-single-email').style.display = 'block';
+
+    document.querySelector('#view-single-email').innerHTML = ''; 
+
+    fetch(`/emails/${emailId}`)
+    .then(response => response.json())
+    .then(email => {
+        const emailDiv = document.createElement("div")
+
+        const sender = document.createElement('p');
+        sender.textContent = `To: ${email.sender}`;
+
+        const subject = document.createElement('p');
+        subject.textContent = email.subject;
+
+        const body = document.createElement('p');
+        body.textContent = email.body;
+
+        const timestamp = document.createElement('p');
+        body.textContent = `Timestamp: ${email.timestamp}`; 
+
+        emailDiv.appendChild(timestamp);
+        emailDiv.appendChild(sender);
+        emailDiv.appendChild(subject);
+        emailDiv.appendChild(body);
+        document.querySelector('#view-single-email').appendChild(emailDiv);
+
+    })
+    
 }
