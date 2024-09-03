@@ -1,4 +1,8 @@
+(this is an assignment for Harvard's CS50 Web Development Program)
 
+## Introduction
+
+Welcome to the Mail application! This powerful email management tool offers a range of key features to enhance your email experience. With Mail, you can easily view and navigate through your emails, mark them as read or unread, and even reply to messages with just a few clicks. Additionally, you have the ability to archive and unarchive emails, keeping your inbox organized and clutter-free. Whether you're a busy professional or a casual user, Mail is designed to streamline your email workflow and make communication effortless. Start using Mail today and take control of your inbox like never before!
 
 ## Next in line
 
